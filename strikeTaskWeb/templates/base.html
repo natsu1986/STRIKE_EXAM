@@ -1,0 +1,65 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="icon" type="image/png" href="{% static 'working-hard.png' %}">
+    <title>Task Manager</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark py-5">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'home' %}">
+            <img src="{% static 'working-hard.png' %}" width="70" height="70" class="d-in-line-block align-top rounded-circle"> 
+            <span class="text-white display-3">Task Manager</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+        {% if user.is_authenticated %}
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item {{ required }}">
+                    <a class="nav-link text-white" href="{% url 'requiredtasks' %}">Required Tasks</a>
+                </li>
+                <li class="nav-item pl-5 {{ completed }}">
+                    <a class="nav-link text-white" href="{% url 'completedtasks' %}">Completed Tasks</a>
+                </li>
+                <li class="nav-item pl-5 {{ create }}">
+                    <a class="nav-link text-white" href="{% url 'taskcreation' %}">Task Creation</a>
+                </li>
+            </ul>
+        {% endif %}
+        <ul class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a href="#" onclick="$('#signOutBtn').click()" class="nav-link">Logout</a>
+                    <form style="display: none;" method="POST" action="{% url 'userlogout' %}">
+                        {% csrf_token %}
+                        <button id="signOutBtn" type="submit">Logout</button>
+                    </form>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{% url 'usersignup' %}">Sign Up</a>
+                </li>
+                <li class="nav-item pl-5">
+                    <a class="nav-link text-white" href="{% url 'userlogin' %}">Login</a>
+                </li>
+            {% endif %}
+        </ul>
+        </div>
+    </div>
+    </nav>
+    
+    <div class="container">
+    {% block content %}{% endblock %}
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>  
+</body>
+</html>
