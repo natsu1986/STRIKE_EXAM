@@ -18,7 +18,7 @@ Bootstrap, jQuery and Popper.js have already been linked via base.html sheet
 
 # HOW TO USE API
 
-# SIGN UP && RECIEVE TOKEN :
+# SIGN UP && RECEIVE TOKEN :
 curl -X "POST" http://localhost/api/signup -H 'Content-Type: application/json' -d '{"username":"{your username}", "password":"{your password}"}'
 
 # RECIEVE TOKEN via Login:
