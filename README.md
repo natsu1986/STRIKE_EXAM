@@ -25,16 +25,16 @@ curl -X "POST" http://localhost/api/signup -H 'Content-Type: application/json' -
 curl -X "POST" http://localhost/api/login -H 'Content-Type: application/json' -d '{"username":"{your username}", "password":"{your password}"}'
 
 # CREATE task:
-curl -X "POST"  http://127.0.0.1:8000/api/tasks -H 'Authorization:Token {your token}' -H 'Content-Type: application/json' -d '{"title":"{your title}", "description":"{your description}", "datetobecomplete" : "{date yyyy-mm-dd}",  "urgent":{true or false}, "important":{true or false}' 
+curl -X "POST"  http://localhost/api/tasks -H 'Authorization:Token {your token}' -H 'Content-Type: application/json' -d '{"title":"{your title}", "description":"{your description}", "datetobecomplete" : "{date yyyy-mm-dd}",  "urgent":{true or false}, "important":{true or false}' 
 
 # VIEW current tasks:
-curl -X "GET"  http://127.0.0.1:8000/api/tasks -H 'Authorization:Token {your token}' 
+curl -X "GET"  http://localhost/api/tasks -H 'Authorization:Token {your token}' 
 
 # UPDATE task:
-curl -X "PUT"  http://127.0.0.1:8000/api/tasks/{task ID} -H 'Authorization:Token {your token}' -H 'Content-Type: application/json' -d '{"title":"{your title}", "description":"{your description}", "datetobecomplete" : "{date yyyy-mm-dd}",  "urgent":{true or false}, "important":{true or false}'
+curl -X "PUT"  http://localhost/api/tasks/{task ID} -H 'Authorization:Token {your token}' -H 'Content-Type: application/json' -d '{"title":"{your title}", "description":"{your description}", "datetobecomplete" : "{date yyyy-mm-dd}",  "urgent":{true or false}, "important":{true or false}'
 
 # COMPLETE task:
-curl -X "PUT"  http://127.0.0.1:8000/api/tasks/{task ID}/complete -H 'Authorization:Token {your token}'
+curl -X "PUT"  http://localhost/api/tasks/{task ID}/complete -H 'Authorization:Token {your token}'
 
 # DELETE task:
-curl -X "DELETE"  http://127.0.0.1:8000/api/tasks/{task ID} -H 'Authorization:Token {your token}'
+curl -X "DELETE"  http://localhost/api/tasks/{task ID} -H 'Authorization:Token {your token}'
